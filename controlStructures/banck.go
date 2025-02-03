@@ -13,7 +13,8 @@ func main() {
 
 	accountBalance, problem := readValueBalance()
 	if problem != nil {
-		fmt.Printf("\n\n\nWe have error when I try reading file, the error is: %s\n\n\n", problem)
+		fmt.Printf("\n\n---------------------------------------\nWe have error when I try reading file, the error is: %s\n---------------------------------------\n\n", problem)
+		panic("Can't con tinue, sorry")
 	}
 	fmt.Println("Welcome to Go Bank")
 

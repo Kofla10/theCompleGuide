@@ -1,0 +1,4 @@
+The values are:
+ebt    => %.3f
+profit => %.3f
+ratio  => %.3f-42 1.2987012987012985 -32.34
