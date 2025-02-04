@@ -1,29 +1,26 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"os"
-	"strconv"
+
+	"exercise.go/bank/fileops"
+	"github.com/Pallinder/go-randomdata"
 )
 
 const accountBalanceFile = "balance.txt"
 
 func main() {
 
-	accountBalance, problem := readValueBalance()
+	accountBalance, problem := fileops.ReadValueBalance(accountBalanceFile)
 	if problem != nil {
 		fmt.Printf("\n\n---------------------------------------\nWe have error when I try reading file, the error is: %s\n---------------------------------------\n\n", problem)
-		panic("Can't con tinue, sorry")
+		// panic("Can't con tinue, sorry")
 	}
 	fmt.Println("Welcome to Go Bank")
+	fmt.Println("Reach us 24/7", randomdata.PhoneNumber())
 
 	for {
-		fmt.Println("What do you want to do")
-		fmt.Println("1. Check balance")
-		fmt.Println("2. Deposit money")
-		fmt.Println("3. Withdraw money")
-		fmt.Println("3. Exit")
+		presentOption()
 
 		var choice int
 		fmt.Print("Your choice: ")
@@ -69,31 +66,7 @@ func main() {
 			// break
 		}
 
-		writeBalanceToFile(accountBalance)
+		fileops.WriteBalanceToFile(accountBalance, accountBalanceFile)
 		fmt.Printf("\nTha amount of money that you have in you acount is: %v\n\n", accountBalance)
 	}
-}
-
-// I created a function for write the change to balance
-func writeBalanceToFile(balance float64) {
-	//we change to type of balance variable
-	balanceText := fmt.Sprint(balance)
-
-	os.WriteFile(accountBalanceFile, []byte(balanceText), 0644)
-}
-
-// created function to read value of the balance
-func readValueBalance() (valueBalance float64, er error) {
-	er = nil
-	value, err := os.ReadFile(accountBalanceFile)
-	if err != nil {
-		return 1000, errors.New("Failed to find balance file.")
-	}
-
-	balanceText := string(value)
-	valueBalance, err = strconv.ParseFloat(balanceText, 64)
-	if err != nil {
-		return 500, errors.New("Failed to parse stored balance values.")
-	}
-	return
 }
