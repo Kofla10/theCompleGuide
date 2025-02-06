@@ -12,10 +12,10 @@ type user1 struct {
 	createdAt time.Time
 }
 
-func structP() {
-	userFirstName := getUserData("Please enter your firts name: ")
-	userLastName := getUserData("Please enter your last name: ")
-	userBirthdate := getUserData("Please enter your birthday: ")
+func main1() {
+	userFirstName := getUserData1("Please enter your firts name: ")
+	userLastName := getUserData1("Please enter your last name: ")
+	userBirthdate := getUserData1("Please enter your birthday: ")
 
 	var appUser1 = user1{
 		firstName: userFirstName,
@@ -41,7 +41,7 @@ func outputUserDetails1(u user1) {
 	fmt.Println(u.createdAt)
 }
 
-func getUserDat1a(promptText string) string {
+func getUserData1(promptText string) string {
 	fmt.Print(promptText)
 	var value string
 	fmt.Scan(&value)
