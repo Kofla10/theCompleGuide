@@ -7,13 +7,16 @@ import (
 )
 
 func main() {
-	var note *note.Note
+	var appNote *note.Note
 
-	title, content, err := getNoteData()
+	title, content, err := note.GetNoteData()
 
+	appNote, err = note.New(title, content)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Print("\n", err, "\n\n")
+		return
 	}
 
-	fmt.Print(title, content)
+	appNote.OutPrint()
+
 }
